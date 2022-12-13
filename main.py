@@ -14,7 +14,7 @@ def main():
 
     selected_ideal_functions = {}
     for x in range(1, 5):
-        training_tb = db.Table('training_data4', db.MetaData(),
+        training_tb = db.Table('training_data', db.MetaData(),
                                include_columns=['x', f'y{x}'], autoload=True, autoload_with=engine)
         training_set = connection.execute(db.select([training_tb])).fetchall()
         minimum_deviation = math.inf
@@ -23,7 +23,7 @@ def main():
         for y in range(1, 51):
             total_deviation = 0
             maximum_deviation = 0
-            ideal = db.Table('ideal_functions1', db.MetaData(),
+            ideal = db.Table('ideal_functions', db.MetaData(),
                              include_columns=['x', f'y{y}'], autoload=True, autoload_with=engine)
             ideal_set = connection.execute(db.select([ideal])).fetchall()
             for z in range(len(training_set)):
